@@ -1,7 +1,8 @@
-FROM node:alpine3.20
+FROM node:20-alpine3.20
 
-WORKDIR /app
+WORKDIR /tmp
+  
+RUN apk update && apk add --no-cache bash openssl curl &&\
+    npm i node-sbx
 
-RUN npm install @eooce/nodews
-
-CMD ["node", "-e", "require('@eooce/nodews')"]
+CMD ["npx", "node-sbx"]
